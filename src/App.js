@@ -186,6 +186,7 @@ class App extends Component {
                 <Editor
                     editorState={this.state.editorState}
                     onChange={editorState => {
+                        console.log(editorState.toJS())
                         const contentState = editorState.getCurrentContent()
                         const selection = editorState.getSelection()
                         const focusKey = selection.getFocusKey()
