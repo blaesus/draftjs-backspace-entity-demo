@@ -103,49 +103,7 @@ const Tag = (props) => {
     )
 }
 
-const Mention = (props) => {
-    const data = props.contentState.getEntity(props.entityKey).getData()
-    return (
-        <a
-            href={`${window.location.origin}/${data.userId}`}
-            style={{
-                background: '#eee',
-                color: 'black',
-                padding: '2px 6px',
-                borderRadius: '8px',
-            }}
-        >
-            <span>{data.displayName}</span>
-        </a>
-    )
-}
-const Link = (props) => {
-    const data = props.contentState.getEntity(props.entityKey).getData()
-    if (data.url.startsWith(window.location.origin)) {
-        return (
-            <a href={data.url}>
-                {data.url}
-            </a>
-        )
-    }
-    else {
-        return (
-            <a href={data.url} target="_blank">
-                {data.url}
-            </a>
-        )
-    }
-}
-
 export const decorator = new CompositeDecorator([
-    {
-        strategy: entityFinder('LINK'),
-        component: Link,
-    },
-    {
-        strategy: entityFinder('MENTION'),
-        component: Mention,
-    },
     {
         strategy: entityFinder('TAG'),
         component: Tag,
